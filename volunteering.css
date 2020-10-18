@@ -4,22 +4,23 @@
 }
 
 .RegForm{
-    background: url('church.jpg');
+    background: url('church.png');
     height: 100vh;
     background-position: center;
     background-size: cover;
 
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 
 .formbox{
     background:#e89f9ffa;
-    width: 600px;
+    width: 400px;
+    border-radius: 25px;
 }
 
 .form
@@ -89,6 +90,5 @@
     box-sizing: border-box;
     background: #f44336;
     border: none;
+    border-radius: 25px;
 }
-
-

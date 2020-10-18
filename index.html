@@ -5,70 +5,60 @@
     <title>Volunteer Registration Form</title>
     <link rel="stylesheet" type="text/css" href="volunteering.css"/>
     <script src="volunteering.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 </head>
 <body>
     <section class="RegForm">
         <div class="formbox">
             <div class="form">
+            <form method="post" autocomplete="off" name="google-sheet">
                 <div class="form-header">
                     <span> Enter your Information </span>
                 </div>
                 <div class="form-body">
+                    <input hidden="true" type="number" name="id" id="idValue" value=0></input>
                     <div class="input-container">
                         <label for=""> </label><br>
-                        <input class="input" type="text" placeholder="Group Leader Name">
+                        <input class="input" type="text" name="Name"  placeholder="Group Leader Name">
                     </div>
-                    
                     <div class="input-container">
                         <label for=""></label><br>
-                        <input class="input" type="value" maxlength="10" placeholder="Primary Phone Number">
+                        <input class="input" type="value" maxlength="10" name="Phone" placeholder="Primary Phone Number">
                     </div>
-
-
                     <div class="input-container">
                         <label for=""></label><br>
-                        <input class="input" type="text" placeholder="Email">
+                        <input class="input" type="text" name="Email" placeholder="Email">
                     </div>
 
                     <div class="input-container">
                         <label for=""></label><br>
-                        <input class="input" type="text" placeholder="Number of Group Members">
+                        <input class="input" type="number" name="GroupMembers" placeholder="Number of Group Members">
                     </div>
-
-
-                    <form name="form1" id="form1">
-                        Start Time: <select name="subject" id="subject">
-                        <option value="" selected="selected">Select time</option>
+                        Start Time: <select name="Time" id="subject">
+                        <option value="" name ="Time" selected="selected">Select time</option>
                         </select>
-                    </form>
-
+                    <h3></h3>
                     <div>
                         <label for="start">Day of Volunteering</label>
                         <input type="date" id="calendar" name="Calendar" value="2020-10-17" min="2020-01-01" max="2020-12-31">
                     </div>
-
-
-                    
-
+                    <h3></h3>
                 </div>
-
-                <div class="form-footer">
-
-                   <a href="thankyou.html">
-                    <button class="enter-btn"> Enter</button>
-                   </a>
-                </div>
-                
-                
-                
+                    <button name="submit" id="submit" class="enter-btn">Enter</button>
+            </form>
             </div>
-
-            
-            <!--
-                <div class=""
-            -->        
         </div>
     </section>
-    
+    <script src="script.js"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwfGT2q0rVYPBGeb8lh_VuZtjM9cCJ0_bAQQ9vphBRNqFdBDJEE/exec'
+      const form = document.forms['google-sheet']
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => window.location.href = "thankyou.html")
+        .catch(error => console.error('Error!', error.message))
+      })
+    </script>
 </body>
 </html>
